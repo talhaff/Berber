@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: berber-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5434/berber_db
+    username: berber_user
+    password: berber_secret_2024
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: "berber-super-secret-jwt-key-change-this-in-production-2024-minimum-256-bits"
+    expiration-ms: 86400000  # 24 saat
+
+  redis:
+    slot-lock-ttl-seconds: 180  # 3 dakika
+
+logging:
+  level:
+    com.berber: DEBUG
+    org.springframework.security: INFO

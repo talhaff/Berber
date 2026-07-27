@@ -1,0 +1,40 @@
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: berber_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: berber_db
+      POSTGRES_USER: berber_user
+      POSTGRES_PASSWORD: berber_secret_2024
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U berber_user -d berber_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: berber_redis
+    restart: unless-stopped
+    command: redis-server --requirepass berber_redis_2024 --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "berber_redis_2024", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
