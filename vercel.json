@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd berber-frontend && npm run build",
-  "outputDirectory": "berber-frontend/.next",
-  "installCommand": "cd berber-frontend && npm install",
-  "framework": "nextjs"
-}
