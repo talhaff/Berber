@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Service, Staff, TimeSlot } from './types';
+import { Service, Staff, TimeSlot } from '@/types';
 
 interface BookingState {
   step: number;
