@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Scissors, Clock, Star, Users, ChevronRight, Phone, MapPin, Award, ShieldCheck, Sparkles, Menu, X, Calendar, HelpCircle, ChevronDown } from 'lucide-react';
+// BerberUmut - Luxury Barber Shop Web Application
 import Logo from './components/Logo';
 import AnimatedBackground from './components/AnimatedBackground';
 
