@@ -3,9 +3,9 @@ spring:
     name: berber-backend
 
   datasource:
-    url: jdbc:postgresql://localhost:5434/berber_db
-    username: berber_user
-    password: berber_secret_2024
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5434/berber_db}
+    username: ${SPRING_DATASOURCE_USERNAME:berber_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:berber_secret_2024}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -28,11 +28,11 @@ spring:
     baseline-on-migrate: true
 
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 app:
   jwt:
-    secret: "berber-super-secret-jwt-key-change-this-in-production-2024-minimum-256-bits"
+    secret: ${JWT_SECRET:berber-super-secret-jwt-key-change-this-in-production-2024-minimum-256-bits}
     expiration-ms: 86400000  # 24 saat
 
   redis:
@@ -42,3 +42,4 @@ logging:
   level:
     com.berber: DEBUG
     org.springframework.security: INFO
+
