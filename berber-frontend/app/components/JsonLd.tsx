@@ -35,7 +35,7 @@ export default function JsonLd() {
           'Saturday'
         ],
         'opens': '09:00',
-        'closes': '20:00'
+        'closes': '21:00'
       }
     ],
     'aggregateRating': {

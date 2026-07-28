@@ -472,6 +472,6 @@ const faqs = [
   },
   {
     q: 'Çalışma saatleriniz nedir?',
-    a: 'Pazartesi - Cumartesi günleri arasında 09:00 - 20:00 saatleri arasında kesintisiz randevulu hizmet vermekteyiz.'
+    a: 'Pazartesi - Cumartesi günleri arasında 09:00 - 21:00 saatleri arasında kesintisiz randevulu hizmet vermekteyiz.'
   }
 ];

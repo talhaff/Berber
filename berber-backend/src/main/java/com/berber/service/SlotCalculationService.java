@@ -58,7 +58,7 @@ public class SlotCalculationService {
         int totalMinutes = service.getTotalDurationMinutes();
         List<TimeSlotResponse> availableSlots = new ArrayList<>();
 
-        // Çalışma saatleri boyunca 15 dakikalık adımlarla slotları hesapla
+        // Çalışma saatleri boyunca 30 dakikalık adımlarla slotları hesapla
         LocalDateTime cursor = dayStart;
         while (!cursor.plusMinutes(totalMinutes).isAfter(dayEnd)) {
             LocalDateTime slotStart = cursor;
@@ -76,7 +76,7 @@ public class SlotCalculationService {
                 ));
             }
 
-            cursor = cursor.plusMinutes(15);
+            cursor = cursor.plusMinutes(30);
         }
 
         log.debug("Staff={} Date={} Service={}: {} available slots calculated",
