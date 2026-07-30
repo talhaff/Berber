@@ -40,6 +40,22 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     );
 
     @Query("""
+        SELECT a FROM Appointment a
+        JOIN FETCH a.customer
+        JOIN FETCH a.service
+        JOIN FETCH a.staff
+        WHERE a.staff.id = :staffId
+          AND a.startTime >= :dayStart
+          AND a.startTime < :dayEnd
+        ORDER BY a.startTime
+        """)
+    List<Appointment> findAllByStaffAndDay(
+            @Param("staffId") Long staffId,
+            @Param("dayStart") LocalDateTime dayStart,
+            @Param("dayEnd") LocalDateTime dayEnd
+    );
+
+    @Query("""
         SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END
         FROM Appointment a
         WHERE a.staff.id = :staffId

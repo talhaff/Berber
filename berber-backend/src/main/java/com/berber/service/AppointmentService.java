@@ -93,6 +93,19 @@ public class AppointmentService {
     public List<AppointmentResponse> getDayAppointments(LocalDate date) {
         LocalDateTime dayStart = date.atStartOfDay();
         LocalDateTime dayEnd   = date.atTime(LocalTime.MAX);
+
+        org.springframework.security.core.Authentication auth = 
+                org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null && auth.isAuthenticated()) {
+            String email = auth.getName();
+            User currentUser = userRepository.findByEmail(email).orElse(null);
+            if (currentUser != null && currentUser.getRole() == User.Role.STAFF) {
+                return appointmentRepository.findAllByStaffAndDay(currentUser.getId(), dayStart, dayEnd)
+                        .stream().map(this::toResponse).toList();
+            }
+        }
+
         return appointmentRepository.findAllByDay(dayStart, dayEnd)
                 .stream().map(this::toResponse).toList();
     }
