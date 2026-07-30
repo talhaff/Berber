@@ -15,10 +15,16 @@ export default function AdminLogin() {
     e.preventDefault();
     try {
       const res = await api.login(email, password);
-      localStorage.setItem('berber_token', res.token);
+      sessionStorage.setItem('berber_token', res.token);
       router.push('/admin');
     } catch (err: any) {
       setError('Giriş başarısız. Lütfen bilgilerinizi kontrol edin.');
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleLogin(e);
     }
   };
 
@@ -40,6 +46,7 @@ export default function AdminLogin() {
               type="email" 
               value={email} 
               onChange={e => setEmail(e.target.value)}
+              onKeyDown={handleKeyDown}
               className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl p-3.5 text-white focus:border-[#D4AF37] focus:outline-none transition-all" 
               placeholder="admin@berber.com"
             />
@@ -50,6 +57,7 @@ export default function AdminLogin() {
               type="password" 
               value={password} 
               onChange={e => setPassword(e.target.value)}
+              onKeyDown={handleKeyDown}
               className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl p-3.5 text-white focus:border-[#D4AF37] focus:outline-none transition-all" 
               placeholder="••••••••"
             />

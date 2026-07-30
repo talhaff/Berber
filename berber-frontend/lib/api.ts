@@ -3,7 +3,7 @@ import { AppointmentCreateRequest, AppointmentResponse, AppointmentStatus, AuthR
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api';
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('berber_token') : null;
+  const token = typeof window !== 'undefined' ? sessionStorage.getItem('berber_token') : null;
 
   const res = await fetch(`${API_BASE}${path}`, {
     headers: {

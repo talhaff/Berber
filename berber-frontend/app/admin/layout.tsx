@@ -10,7 +10,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('berber_token');
+    const token = sessionStorage.getItem('berber_token');
     if (!token && pathname !== '/admin/login') {
       router.push('/admin/login');
     } else if (token) {
@@ -39,7 +39,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
 
             <button 
-              onClick={() => { localStorage.removeItem('berber_token'); router.push('/admin/login'); }}
+              onClick={() => { sessionStorage.removeItem('berber_token'); router.push('/admin/login'); }}
               className="text-xs font-medium text-white/60 hover:text-[#D4AF37] border border-white/10 px-4 py-2 rounded-xl hover:border-[#D4AF37]/40 transition-all"
             >
               Çıkış Yap
