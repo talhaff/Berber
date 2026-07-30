@@ -9,8 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -22,15 +20,18 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        log.info("Admin şifresi senkronizasyonu başlıyor...");
-        
-        Optional<User> adminOpt = userRepository.findByEmail("admin@berber.com");
-        if (adminOpt.isPresent()) {
-            User admin = adminOpt.get();
-            // Şifreyi, mevcut PasswordEncoder ile kesinlikle eşleşecek şekilde ez (Farklı bakış açısı)
-            admin.setPassword(passwordEncoder.encode("admin123"));
-            userRepository.save(admin);
-            log.info("Admin şifresi başarıyla 'admin123' olarak güncellendi (Yeni Hash).");
-        }
+        log.info("Kullanıcı şifreleri senkronize ediliyor...");
+
+        updatePassword("admin@berber.com", "admin123");
+        updatePassword("umut@berber.com", "umut123");
+        updatePassword("yasin@berber.com", "yasin123");
+    }
+
+    private void updatePassword(String email, String rawPassword) {
+        userRepository.findByEmail(email).ifPresent(user -> {
+            user.setPassword(passwordEncoder.encode(rawPassword));
+            userRepository.save(user);
+            log.info("Şifre başarıyla senkronize edildi: {}", email);
+        });
     }
 }
