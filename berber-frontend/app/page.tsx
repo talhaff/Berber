@@ -423,7 +423,7 @@ export default function HomePage() {
           </Link>
           
           <div className="text-xs text-white/50 font-normal">
-            &copy; 2024 <span className="text-[#F5E6BE] font-semibold">Luxury Barber Malatya</span>. Tüm hakları saklıdır.
+            &copy; 2026 <span className="text-[#F5E6BE] font-semibold">Luxury Barber Malatya.</span>Talha Özcan. Tüm hakları saklıdır.
           </div>
 
           <div className="flex items-center gap-4 sm:gap-6 text-xs text-white/40 font-normal">
