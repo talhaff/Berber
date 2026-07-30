@@ -11,8 +11,8 @@ VALUES (
 
 -- Personeller
 INSERT INTO users (full_name, email, password, role, work_start, work_end) VALUES
-    ('Umut Usta',  'umut@berber.com',  '$2a$12$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'STAFF', '09:00:00', '21:00:00'),
-    ('Yasin Usta', 'yasin@berber.com', '$2a$12$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'STAFF', '09:00:00', '21:00:00')
+    ('Ahmet Usta',  'ahmet@berber.com',  '$2a$12$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'STAFF', '09:00:00', '18:00:00'),
+    ('Mehmet Usta', 'mehmet@berber.com', '$2a$12$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'STAFF', '10:00:00', '20:00:00')
 ON CONFLICT (email) DO NOTHING;
 
 -- Hizmetler
